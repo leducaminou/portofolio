@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import Sidebar from "@/components/admin/Sidebar";
 
 export default async function AdminLayout({
