@@ -45,11 +45,7 @@ Thumbs.db
 # Vercel (optional, depending on your setup)
 .vercel/
 
-/prisma/seed.ts
-/prisma/data.ts
 
-# Prisma
-/prisma
 
 
 # Docker
