@@ -60,6 +60,7 @@ export default function Sidebar({ lang }: SidebarProps) {
         <motion.aside
           initial={{ x: -280 }}
           animate={{ x: 0 }}
+          suppressHydrationWarning
           className={`fixed lg:static inset-y-0 left-0 z-40 w-64 bg-surface border-r border-border flex flex-col 
             ${collapsed ? "translate-x-0" : "-translate-x-full lg:translate-x-0"} 
             transition-transform lg:transition-none`}

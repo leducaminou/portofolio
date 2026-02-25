@@ -1,33 +1,33 @@
 import { PrismaClient } from "@prisma/client";
 import { PrismaPg } from "@prisma/adapter-pg";
-import pg from "pg";
-import "dotenv/config";
+import { Pool } from "pg";
 import bcrypt from "bcryptjs";
 import { userData } from "./data";
+import "dotenv/config";
 
 const connectionString = process.env.DATABASE_URL!;
-const pool = new pg.Pool({ connectionString });
+const pool = new Pool({ connectionString });
 const adapter = new PrismaPg(pool);
 const prisma = new PrismaClient({ adapter });
 
 async function main() {
-  console.log("Starting seed...");
+  console.log("Seeding database...");
 
-  // Optional: Clear existing users
-  await prisma.user.deleteMany();
-  console.log("Cleared existing users.");
+  const hashedPassword = await bcrypt.hash(userData.password, 10);
 
-  const hashedPassword = await bcrypt.hash(userData.password, 12);
-
-  const admin = await prisma.user.create({
-    data: {
+  const user = await prisma.user.upsert({
+    where: { email: userData.email },
+    update: {
+      password: hashedPassword,
+    },
+    create: {
       email: userData.email,
       password: hashedPassword,
     },
   });
 
-  console.log(`Created admin user: ${admin.email}`);
-  console.log("Seed finished successfully.");
+  console.log(`User created or updated: ${user.email}`);
+  console.log("Seeding finished.");
 }
 
 main()

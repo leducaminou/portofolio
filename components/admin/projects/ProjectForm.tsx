@@ -11,7 +11,7 @@ import {
   Camera,
   Loader2,
 } from "lucide-react";
-import { projectSchema, ProjectInput } from "@/lib/schemas/project";
+import { projectSchema, ProjectInput } from "@/lib/validations";
 import { createProject, updateProject } from "@/lib/actions/projects";
 import { useModal } from "@/components/modals/ModalContext";
 import Input from "@/components/ui/Input";
@@ -35,20 +35,27 @@ export default function ProjectForm() {
     handleSubmit,
     formState: { errors },
     reset,
+    setValue,
   } = useForm<ProjectInput>({
     resolver: zodResolver(projectSchema),
-    defaultValues: project || {
-      title: "",
-      slug: "",
-      description: "",
-      liveUrl: "",
-      githubUrl: "",
-      published: false,
-      performanceScore: 0,
-      seoScore: 0,
-      uptimeScore: 0,
-      implementations: [],
-    },
+    defaultValues: project
+      ? {
+          ...project,
+          liveUrl: project.liveUrl || "",
+          githubUrl: project.githubUrl || "",
+        }
+      : {
+          title: "",
+          slug: "",
+          description: "",
+          liveUrl: "",
+          githubUrl: "",
+          published: false,
+          performanceScore: 0,
+          seoScore: 0,
+          uptimeScore: 0,
+          implementations: [],
+        },
   });
 
   const onSubmit = async (formData: ProjectInput) => {
@@ -171,6 +178,23 @@ export default function ProjectForm() {
           step="0.1"
           {...register("uptimeScore", { valueAsNumber: true })}
           error={errors.uptimeScore?.message}
+        />
+      </div>
+
+      <div className="space-y-2">
+        <label className="text-sm font-medium text-muted">
+          Implementations / Tech Stack (comma separated)
+        </label>
+        <Input
+          placeholder="Next.js, Tailwind, Prisma..."
+          defaultValue={project?.implementations?.join(", ")}
+          onChange={(e) => {
+            const tags = e.target.value
+              .split(",")
+              .map((t) => t.trim())
+              .filter(Boolean);
+            setValue("implementations" as any, tags);
+          }}
         />
       </div>
 

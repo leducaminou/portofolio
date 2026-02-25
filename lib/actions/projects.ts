@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import prisma from "@/lib/prisma";
-import { projectSchema, ProjectInput } from "@/lib/schemas/project";
+import { projectSchema, ProjectInput } from "@/lib/validations";
 
 export async function createProject(data: ProjectInput) {
   try {
@@ -11,7 +11,6 @@ export async function createProject(data: ProjectInput) {
     const project = await prisma.project.create({
       data: {
         ...validated,
-        implementations: validated.implementations || [],
       },
     });
 
@@ -31,7 +30,6 @@ export async function updateProject(id: string, data: ProjectInput) {
       where: { id },
       data: {
         ...validated,
-        implementations: validated.implementations || [],
       },
     });
 

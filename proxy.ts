@@ -59,7 +59,18 @@ export async function proxy(request: NextRequest) {
     }
   }
 
-  // Pass through — NO cookie writes to avoid reload loops
+  // ═══ Locale persistence ═══
+  const urlLocale = pathname.split("/")[1];
+  if (LOCALES.includes(urlLocale)) {
+    const response = NextResponse.next();
+    response.cookies.set("NEXT_LOCALE", urlLocale, {
+      path: "/",
+      maxAge: 31536000, // 1 year
+    });
+    return response;
+  }
+
+  // Pass through
   return NextResponse.next();
 }
 
