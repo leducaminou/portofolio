@@ -1,8 +1,9 @@
 import prisma from "@/lib/prisma";
+import type { Project } from "@prisma/client";
 import ProjectList from "@/components/admin/projects/ProjectList";
 import ProjectHeader from "@/components/admin/projects/ProjectHeader";
 
-export default async function  ProjectsPage({
+export default async function ProjectsPage({
   params,
 }: {
   params: Promise<{ lang: string }>;
@@ -12,7 +13,7 @@ export default async function  ProjectsPage({
   });
 
   // Sanitize data for client component (convert Dates to strings)
-  const serializedProjects = projects.map((p) => ({
+  const serializedProjects = projects.map((p: Project) => ({
     ...p,
     createdAt: p.createdAt.toISOString(),
     updatedAt: p.updatedAt.toISOString(),
