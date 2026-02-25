@@ -130,10 +130,10 @@ export const projectsData: Project[] = [
 },
   {
   id: "2",
-  title: "Juatradx – Investment Platform",
+  title: "Cr Crypto – Investment Platform",
   description:
     "A modern web-based investment platform designed to manage user portfolios, transactions, and financial growth with real-time analytics, secure authentication, and scalable infrastructure.",
-  image: "",
+  image: "/projects/crypcrypto.webp",
   tags: [
     "Next.js",
     "TypeScript",
@@ -151,7 +151,8 @@ export const projectsData: Project[] = [
     "Transaction management (deposits, withdrawals, transfers)",
     "Automated earnings distribution system",
   ],
-  liveUrl: "https://www.juatradx.com/"
+  liveUrl: "https://www.crypcrypto.com/",
+  githubUrl: "https://github.com/leducaminou/crypcrypto"
 },
   {
     id: "3",
