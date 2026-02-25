@@ -1,0 +1,61 @@
+# Dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# Next.js
+/.next/
+/out/
+.next/cache/
+
+# Build files
+*.log
+*.tsbuildinfo
+
+# Environment variables
+.env*.local
+.env
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# IDE & Editor
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS & System
+.DS_Store
+Thumbs.db
+*.orig
+*.rej
+
+# Testing
+/coverage/
+/.jest/
+/cypress/
+
+# Vercel (optional, depending on your setup)
+.vercel/
+
+/public/profil_pics/
+/public/professionals/
+/public/qr_codes/
+/prisma/_seed.ts
+/prisma/seed.ts
+/prisma/_data.ts
+/prisma/data.ts
+
+# Prisma
+/prisma
+
+
+# Docker
+.dockerignore

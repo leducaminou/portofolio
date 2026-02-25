@@ -1,0 +1,83 @@
+{
+  "nav": {
+    "services": "Services",
+    "stack": "Compétences",
+    "projects": "Projets",
+    "capabilities": "Capacités",
+    "contact": "Contact"
+  },
+  "hero": {
+    "greeting": "Bonjour, je suis",
+    "name": "John Doe",
+    "roles": ["Développeur Web", "Développeur d'Apps", "Créateur SaaS", "Designer UI/UX"],
+    "description": "Création d'expériences numériques exceptionnelles avec les technologies web & mobile modernes.",
+    "cta_work": "Voir mes projets",
+    "cta_contact": "Me contacter",
+    "tags": ["React", "TypeScript", "Next.js", "Node.js", "Flutter"]
+  },
+  "services": {
+    "title": "Services",
+    "subtitle": "Ce que j'offre pour développer votre activité",
+    "items": [
+      {
+        "title": "Applications Web",
+        "description": "Applications modernes et responsives construites avec Next.js, React et TypeScript pour des performances optimales."
+      },
+      {
+        "title": "Applications Mobiles",
+        "description": "Applications mobiles cross-platform avec Flutter et React Native pour iOS & Android."
+      },
+      {
+        "title": "Plateformes SaaS",
+        "description": "Solutions SaaS évolutives avec multi-tenancy, facturation et analytics intégrés."
+      },
+      {
+        "title": "Tableaux de bord",
+        "description": "Panneaux d'administration riches en données avec mises à jour en temps réel et graphiques élégants."
+      }
+    ]
+  },
+  "stack": {
+    "title": "Expertise Technique",
+    "subtitle": "Technologies que j'utilise quotidiennement",
+    "categories": {
+      "all": "Tout",
+      "frontend": "Développement Frontend",
+      "backend": "Backend & APIs",
+      "devops": "Performance & DevOps",
+      "mobile": "Mobile"
+    }
+  },
+  "projects": {
+    "title": "Projets en Vedette",
+    "subtitle": "Travaux sélectionnés démontrant mon expertise",
+    "metrics_label": "Métriques de performance",
+    "implementations_label": "Implémentation technique",
+    "performance": "Performance",
+    "seo": "SEO",
+    "uptime": "Uptime"
+  },
+  "capabilities": {
+    "title": "Capacités Web Modernes",
+    "subtitle": "Technologies et patterns de pointe dans lesquels je me spécialise"
+  },
+  "contact": {
+    "title": "Construisons Quelque Chose d'Incroyable",
+    "subtitle": "Prêt pour un nouveau projet ? Discutons de votre vision et réalisons-la !",
+    "available": "Disponible pour de nouveaux projets",
+    "name_label": "Nom",
+    "name_placeholder": "Votre nom",
+    "email_label": "Email",
+    "email_placeholder": "votre@email.com",
+    "message_label": "Message",
+    "message_placeholder": "Parlez-moi de votre projet...",
+    "send": "Envoyer le message",
+    "sending": "Envoi en cours...",
+    "success": "Message envoyé avec succès !",
+    "error": "Une erreur est survenue. Veuillez réessayer."
+  },
+  "footer": {
+    "rights": "Tous droits réservés.",
+    "built_with": "Construit avec Next.js & Tailwind CSS"
+  }
+}

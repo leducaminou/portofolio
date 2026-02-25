@@ -1,0 +1,83 @@
+{
+  "nav": {
+    "services": "Services",
+    "stack": "Stack",
+    "projects": "Projects",
+    "capabilities": "Capabilities",
+    "contact": "Contact"
+  },
+  "hero": {
+    "greeting": "Hi, I'm",
+    "name": "John Doe",
+    "roles": ["Web Developer", "App Developer", "SaaS Builder", "UI/UX Designer"],
+    "description": "Crafting exceptional digital experiences with modern web & mobile technologies.",
+    "cta_work": "View My Work",
+    "cta_contact": "Get in touch",
+    "tags": ["React", "TypeScript", "Next.js", "Node.js", "Flutter"]
+  },
+  "services": {
+    "title": "Services",
+    "subtitle": "What I offer to help your business grow",
+    "items": [
+      {
+        "title": "Web Applications",
+        "description": "Modern, responsive web apps built with Next.js, React, and TypeScript for optimal performance."
+      },
+      {
+        "title": "Mobile Apps",
+        "description": "Cross-platform mobile applications with Flutter and React Native for iOS & Android."
+      },
+      {
+        "title": "SaaS Platforms",
+        "description": "Scalable SaaS solutions with multi-tenancy, billing, and analytics built-in."
+      },
+      {
+        "title": "Dashboards",
+        "description": "Data-rich admin panels and dashboards with real-time updates and beautiful charts."
+      }
+    ]
+  },
+  "stack": {
+    "title": "Technical Expertise",
+    "subtitle": "Technologies I work with daily",
+    "categories": {
+      "all": "All",
+      "frontend": "Frontend Development",
+      "backend": "Backend & APIs",
+      "devops": "Performance & DevOps",
+      "mobile": "Mobile"
+    }
+  },
+  "projects": {
+    "title": "Featured Projects",
+    "subtitle": "Selected work showcasing my expertise",
+    "metrics_label": "Performance Metrics",
+    "implementations_label": "Technical Implementation",
+    "performance": "Performance",
+    "seo": "SEO",
+    "uptime": "Uptime"
+  },
+  "capabilities": {
+    "title": "Modern Web Capabilities",
+    "subtitle": "Cutting-edge technologies and patterns I specialize in"
+  },
+  "contact": {
+    "title": "Let's Build Something Amazing",
+    "subtitle": "Ready for a new project? Let's discuss your vision and make it reality!",
+    "available": "Available for new projects",
+    "name_label": "Name",
+    "name_placeholder": "Your name",
+    "email_label": "Email",
+    "email_placeholder": "your@email.com",
+    "message_label": "Message",
+    "message_placeholder": "Tell me about your project...",
+    "send": "Send Message",
+    "sending": "Sending...",
+    "success": "Message sent successfully!",
+    "error": "Something went wrong. Please try again."
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "built_with": "Built with Next.js & Tailwind CSS"
+  }
+}

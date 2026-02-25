@@ -1,0 +1,332 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════════════
+   DESIGN SYSTEM — Dark Portfolio Theme
+   ═══════════════════════════════════════════════════════ */
+
+@theme inline {
+  --color-background: #030014;
+  --color-foreground: #e2e8f0;
+  --color-surface: #0a0a1a;
+  --color-surface-light: #111130;
+  --color-border: rgba(139, 92, 246, 0.15);
+  --color-border-hover: rgba(139, 92, 246, 0.4);
+  --color-accent: #8b5cf6;
+  --color-accent-light: #a78bfa;
+  --color-accent-dark: #6d28d9;
+  --color-accent-cyan: #06b6d4;
+  --color-accent-pink: #ec4899;
+  --color-accent-blue: #3b82f6;
+  --color-muted: #64748b;
+  --color-success: #10b981;
+  --color-error: #ef4444;
+  --color-card: rgba(15, 15, 40, 0.6);
+  --color-card-hover: rgba(25, 25, 60, 0.8);
+  --color-glass: rgba(15, 15, 35, 0.5);
+  --color-glass-border: rgba(139, 92, 246, 0.1);
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", monospace;
+}
+
+/* ═══ Base ═══ */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(139, 92, 246, 0.3) transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(139, 92, 246, 0.3);
+  color: #fff;
+}
+
+/* ═══ Grid Background Pattern ═══ */
+.grid-background {
+  background-image:
+    linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* ═══ Gradient Orbs ═══ */
+.gradient-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.gradient-orb-1 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.4), transparent 70%);
+  top: -10%;
+  left: -10%;
+}
+
+.gradient-orb-2 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.3), transparent 70%);
+  top: 20%;
+  right: -5%;
+}
+
+.gradient-orb-3 {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(
+    circle,
+    rgba(236, 72, 153, 0.25),
+    transparent 70%
+  );
+  bottom: 10%;
+  left: 20%;
+}
+
+/* ═══ Glassmorphism ═══ */
+.glass {
+  background: var(--color-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--color-glass-border);
+}
+
+.glass-card {
+  background: var(--color-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  background: var(--color-card-hover);
+  border-color: var(--color-border-hover);
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.1);
+}
+
+/* ═══ Glow Effects ═══ */
+.glow-sm {
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.15);
+}
+
+.glow-md {
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.2);
+}
+
+.glow-lg {
+  box-shadow: 0 0 50px rgba(139, 92, 246, 0.25);
+}
+
+.glow-text {
+  text-shadow: 0 0 40px rgba(139, 92, 246, 0.5);
+}
+
+/* ═══ Gradient Text ═══ */
+.gradient-text {
+  background: linear-gradient(135deg, #8b5cf6, #06b6d4, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-accent {
+  background: linear-gradient(135deg, #a78bfa, #818cf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ═══ Animated Gradient Border ═══ */
+.gradient-border {
+  position: relative;
+}
+
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, #8b5cf6, #06b6d4, #ec4899);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+  pointer-events: none;
+}
+
+/* ═══ Button Styles ═══ */
+.btn-primary {
+  background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+  color: #fff;
+  padding: 12px 28px;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.4);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: #a78bfa;
+  padding: 12px 28px;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(139, 92, 246, 0.4);
+  cursor: pointer;
+}
+
+.btn-outline:hover {
+  background: rgba(139, 92, 246, 0.1);
+  border-color: #8b5cf6;
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
+}
+
+/* ═══ Section Spacing ═══ */
+.section-padding {
+  padding: 100px 0;
+}
+
+/* ═══ Nav Tag Pills ═══ */
+.nav-tag {
+  padding: 6px 16px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border: 1px solid var(--color-border);
+  background: var(--color-card);
+  color: var(--color-muted);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.nav-tag:hover,
+.nav-tag.active {
+  color: #fff;
+  border-color: var(--color-accent);
+  background: rgba(139, 92, 246, 0.15);
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.1);
+}
+
+/* ═══ Animations ═══ */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(139, 92, 246, 0.4);
+  }
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+/* ═══ Progress Bar ═══ */
+.progress-track {
+  height: 6px;
+  background: rgba(139, 92, 246, 0.1);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #8b5cf6, #06b6d4);
+  transition: width 1s ease;
+}
+
+/* ═══ Form Inputs ═══ */
+.form-input {
+  width: 100%;
+  padding: 14px 18px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  color: var(--color-foreground);
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.form-input:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.15);
+}
+
+.form-input::placeholder {
+  color: var(--color-muted);
+}
+
+/* ═══ Scrollbar ═══ */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(139, 92, 246, 0.3);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 92, 246, 0.5);
+}
