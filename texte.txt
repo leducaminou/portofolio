@@ -30,7 +30,7 @@ si tu modifier schema prisma n'oublie pas de migrer.
 
 lorsqu'on essai d'acceder à /admin/projects on a l'erreur suivante:
 Console Error
-
+utyu
 
 A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
 - A server/client branch `if (typeof window !== 'undefined')`.
