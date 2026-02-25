@@ -8,7 +8,7 @@
   },
   "hero": {
     "greeting": "Hi, I'm",
-    "name": "John Doe",
+    "name": "Aminou Mohamadou",
     "roles": ["Web Developer", "App Developer", "SaaS Builder", "UI/UX Designer"],
     "description": "Crafting exceptional digital experiences with modern web & mobile technologies.",
     "cta_work": "View My Work",
@@ -55,7 +55,45 @@
     "implementations_label": "Technical Implementation",
     "performance": "Performance",
     "seo": "SEO",
-    "uptime": "Uptime"
+    "uptime": "Uptime",
+    "visit": "Visit Project",
+    "items": [
+      {
+        "title": "Belair Santé — Health Insurance Management",
+        "description": "A comprehensive multi-role health insurance management platform enabling end-to-end management of insured members, healthcare providers, coverage approvals, medical billing, and reimbursements with high security and scalability.",
+        "implementations": [
+          "Multi-role architecture (Administrator, Claims Manager, Healthcare Provider, Insured Member)",
+          "Coverage request generation and validation with approval workflow",
+          "Full medical invoice management (submission, review, validation, rejection)",
+          "Reimbursement processing with detailed status tracking and history",
+          "Real-time analytical dashboards and reporting",
+          "Financial and operational report export (PDF/Excel)"
+        ]
+      },
+      {
+        "title": "Juatradx — Investment Platform",
+        "description": "A modern web-based investment platform designed to manage user portfolios, transactions, and financial growth with real-time analytics, secure authentication, and scalable infrastructure.",
+        "implementations": [
+          "Secure multi-role architecture (Administrator, Investor, Financial Manager)",
+          "User onboarding with KYC verification workflow",
+          "Investment plan management with dynamic return calculation",
+          "Portfolio tracking with real-time profit/loss analytics",
+          "Transaction management (deposits, withdrawals, transfers)",
+          "Automated earnings distribution system"
+        ]
+      },
+      {
+        "title": "AI Analytics Dashboard",
+        "description": "Machine learning powered analytics platform with predictive insights and automated reporting for data-driven decision making.",
+        "implementations": [
+          "Real-time data visualization with D3.js",
+          "ML model integration for predictions",
+          "Automated PDF report generation",
+          "Role-based access control",
+          "Custom query builder UI"
+        ]
+      }
+    ]
   },
   "capabilities": {
     "title": "Modern Web Capabilities",

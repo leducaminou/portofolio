@@ -7,11 +7,11 @@ export const projectSchema = z.object({
   image: z.string().url("Please provide a valid image URL").optional().nullable(),
   liveUrl: z.string().url("Please provide a valid URL").optional().or(z.literal("")).nullable(),
   githubUrl: z.string().url("Please provide a valid URL").optional().or(z.literal("")).nullable(),
-  published: z.boolean().default(false),
-  performanceScore: z.number().min(0).max(100).default(0),
-  seoScore: z.number().min(0).max(100).default(0),
-  uptimeScore: z.number().min(0).max(100).default(0),
-  implementations: z.array(z.string()).default([]),
+  published: z.boolean(),
+  performanceScore: z.number().min(0).max(100),
+  seoScore: z.number().min(0).max(100),
+  uptimeScore: z.number().min(0).max(100),
+  implementations: z.array(z.string()),
 });
 
 export type ProjectInput = z.infer<typeof projectSchema>;

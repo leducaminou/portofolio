@@ -8,7 +8,7 @@
   },
   "hero": {
     "greeting": "Bonjour, je suis",
-    "name": "John Doe",
+    "name": "Aminou Mohamadou",
     "roles": ["Développeur Web", "Développeur d'Apps", "Créateur SaaS", "Designer UI/UX"],
     "description": "Création d'expériences numériques exceptionnelles avec les technologies web & mobile modernes.",
     "cta_work": "Voir mes projets",
@@ -55,7 +55,45 @@
     "implementations_label": "Implémentation technique",
     "performance": "Performance",
     "seo": "SEO",
-    "uptime": "Uptime"
+    "uptime": "Uptime",
+    "visit": "Voir le projet",
+    "items": [
+      {
+        "title": "Belair Santé — Gestion d'Assurance Maladie",
+        "description": "Une plateforme complète de gestion d'assurance maladie multi-rôles permettant la gestion de bout en bout des assurés, prestataires de soins, approbations de couverture, facturation médicale et remboursements.",
+        "implementations": [
+          "Architecture multi-rôles (Administrateur, Gestionnaire de sinistres, Prestataire, Assuré)",
+          "Génération et validation des demandes de prise en charge avec workflow d'approbation",
+          "Gestion complète des factures médicales (soumission, révision, validation, rejet)",
+          "Traitement des remboursements avec suivi détaillé et historique",
+          "Tableaux de bord analytiques en temps réel et rapports",
+          "Export de rapports financiers et opérationnels (PDF/Excel)"
+        ]
+      },
+      {
+        "title": "Juatradx — Plateforme d'Investissement",
+        "description": "Une plateforme d'investissement web moderne conçue pour gérer les portefeuilles, transactions et croissance financière avec des analyses en temps réel, une authentification sécurisée et une infrastructure évolutive.",
+        "implementations": [
+          "Architecture multi-rôles sécurisée (Administrateur, Investisseur, Gestionnaire financier)",
+          "Onboarding des utilisateurs avec workflow de vérification KYC",
+          "Gestion des plans d'investissement avec calcul dynamique des rendements",
+          "Suivi de portefeuille avec analyses profits/pertes en temps réel",
+          "Gestion des transactions (dépôts, retraits, transferts)",
+          "Système de distribution automatisée des gains"
+        ]
+      },
+      {
+        "title": "Tableau de Bord Analytics IA",
+        "description": "Plateforme d'analyse propulsée par le machine learning avec insights prédictifs et rapports automatisés pour une prise de décision basée sur les données.",
+        "implementations": [
+          "Visualisation de données en temps réel avec D3.js",
+          "Intégration de modèles ML pour les prédictions",
+          "Génération automatique de rapports PDF",
+          "Contrôle d'accès basé sur les rôles",
+          "Interface de requêtes personnalisées"
+        ]
+      }
+    ]
   },
   "capabilities": {
     "title": "Capacités Web Modernes",

@@ -60,12 +60,14 @@ export const techStackData: Record<string, TechItem[]> = {
   frontend: [
     { name: "React/Next.js", level: 95, category: "frontend" },
     { name: "TypeScript", level: 92, category: "frontend" },
-    { name: "Vue/Nuxt", level: 78, category: "frontend" },
     { name: "Tailwind CSS", level: 94, category: "frontend" },
+    { name: "HTML/CSS/JS", level: 78, category: "frontend" },
   ],
   backend: [
+    { name: "FastAPI", level: 90, category: "backend" },
     { name: "Node.js", level: 90, category: "backend" },
-    { name: "REST/GraphQL", level: 88, category: "backend" },
+    { name: "Laravel", level: 90, category: "backend" },
+    { name: "REST", level: 88, category: "backend" },
     { name: "PostgreSQL", level: 85, category: "backend" },
     { name: "Docker & DevOps", level: 80, category: "backend" },
   ],
@@ -78,8 +80,6 @@ export const techStackData: Record<string, TechItem[]> = {
   mobile: [
     { name: "React Native", level: 82, category: "mobile" },
     { name: "Flutter", level: 75, category: "mobile" },
-    { name: "iOS/Swift", level: 60, category: "mobile" },
-    { name: "Android/Kotlin", level: 58, category: "mobile" },
   ],
 };
 
@@ -104,46 +104,61 @@ export interface Project {
 
 export const projectsData: Project[] = [
   {
-    id: "1",
-    title: "E-commerce PWA",
-    description:
-      "High-performance Progressive Web App for e-commerce with offline capabilities and push notifications.",
-    image: "/projects/ecommerce.jpg",
-    tags: ["Next.js", "TypeScript", "Stripe", "PostgreSQL"],
-    metrics: { performance: 100, seo: 100, uptime: 99.9 },
-    implementations: [
-      "Server-side rendering for SEO",
-      "Stripe integration for payments",
-      "Redis caching for product data",
-      "Incremental Static Regeneration",
-      "Image optimization with WebP/AVIF",
-    ],
-    liveUrl: "https://example.com",
-    githubUrl: "https://github.com",
-  },
+  id: "2",
+  title: "Belair Santé - Health Insurance Management Web Application",
+  description:
+    "A comprehensive multi-role health insurance management web application enabling end-to-end management of insured members, healthcare providers, coverage approvals, medical billing, and reimbursements with high security, scalability, and performance.",
+  image: "/projects/belair-sante.webp",
+  tags: [
+    "Next.js",
+    "TypeScript",
+    "Tailwind CSS",
+    "FastAPI",
+    "PostgreSQL",
+    "Docker",
+  ],
+  metrics: { performance: 85, seo: 65, uptime: 87.9 },
+  implementations: [
+    "Multi-role architecture (Administrator, Claims Manager, Healthcare Provider, Insured Member)",
+    "Coverage request generation and validation with approval workflow",
+    "Full medical invoice management (submission, review, validation, rejection)",
+    "Reimbursement processing with detailed status tracking and history",
+    "Real-time analytical dashboards and reporting",
+    "Financial and operational report export (PDF/Excel)",
+  ],
+  liveUrl: "https://belairsante.com/"
+},
   {
-    id: "2",
-    title: "Real-time Collaboration Platform",
-    description:
-      "WebSocket-based collaborative workspace for remote teams with real-time editing and video calls.",
-    image: "/projects/collaboration.jpg",
-    tags: ["React", "Socket.io", "WebRTC", "MongoDB"],
-    metrics: { performance: 98, seo: 95, uptime: 100 },
-    implementations: [
-      "WebSocket bi-directional communication",
-      "CRDT conflict resolution",
-      "Custom video streaming",
-      "End-to-end encryption",
-      "Mobile-first responsive design",
-    ],
-    liveUrl: "https://example.com",
-  },
+  id: "2",
+  title: "Juatradx – Investment Platform",
+  description:
+    "A modern web-based investment platform designed to manage user portfolios, transactions, and financial growth with real-time analytics, secure authentication, and scalable infrastructure.",
+  image: "",
+  tags: [
+    "Next.js",
+    "TypeScript",
+    "Tailwind CSS",
+    "FastAPI",
+    "PostgreSQL",
+    "Docker"
+  ],
+  metrics: { performance: 84, seo: 75, uptime: 88.7 },
+  implementations: [
+    "Secure multi-role architecture (Administrator, Investor, Financial Manager)",
+    "User onboarding with KYC verification workflow",
+    "Investment plan management with dynamic return calculation",
+    "Portfolio tracking with real-time profit/loss analytics",
+    "Transaction management (deposits, withdrawals, transfers)",
+    "Automated earnings distribution system",
+  ],
+  liveUrl: "https://www.juatradx.com/"
+},
   {
     id: "3",
     title: "AI Analytics Dashboard",
     description:
       "Machine learning powered analytics platform with predictive insights and automated reporting.",
-    image: "/projects/analytics.jpg",
+    image: "",
     tags: ["Vue.js", "Python", "TensorFlow", "PostgreSQL"],
     metrics: { performance: 96, seo: 90, uptime: 99.8 },
     implementations: [

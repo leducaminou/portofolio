@@ -21,8 +21,8 @@ export async function generateMetadata({
   const isEn = lang === "en";
   return {
     title: isEn
-      ? "John Doe — Web & App Developer"
-      : "John Doe — Développeur Web & App",
+      ? "Aminou Mohamadou — Web & App Developer"
+      : "Aminou Mohamadou — Développeur Web & App",
     description: isEn
       ? "Premium freelance portfolio — Building modern web & mobile experiences for startups and SaaS."
       : "Portfolio freelance premium — Création d'expériences web & mobile modernes pour startups et SaaS.",
@@ -35,8 +35,8 @@ export async function generateMetadata({
     },
     openGraph: {
       title: isEn
-        ? "John Doe — Web & App Developer"
-        : "John Doe — Développeur Web & App",
+        ? "Aminou Mohamadou — Web & App Developer"
+        : "Aminou Mohamadou — Développeur Web & App",
       type: "website",
       locale: lang,
     },

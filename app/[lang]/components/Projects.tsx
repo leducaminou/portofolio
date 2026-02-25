@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
+import Image from "next/image";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { projectsData } from "@/lib/data/fake-data";
 import type { Dictionary } from "@/lib/i18n/types";
@@ -11,6 +12,12 @@ interface ProjectsProps {
 }
 
 export default function Projects({ dict }: ProjectsProps) {
+  // Merge static data (image, tags, metrics, urls) with translated text (title, description, implementations)
+  const projects = projectsData.map((project, index) => ({
+    ...project,
+    ...(dict.projects.items[index] ?? {}),
+  }));
+
   return (
     <section id="projects" className="section-padding relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -20,7 +27,7 @@ export default function Projects({ dict }: ProjectsProps) {
         />
 
         <div className="space-y-16">
-          {projectsData.map((project, index) => (
+          {projects.map((project, index) => (
             <motion.div
               key={project.id}
               initial={{ opacity: 0, y: 50 }}
@@ -126,29 +133,46 @@ export default function Projects({ dict }: ProjectsProps) {
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 text-accent-light text-sm font-medium hover:text-accent transition-colors"
                     >
-                      Visit Project <ExternalLink size={14} />
+                      {dict.projects.visit} <ExternalLink size={14} />
                     </motion.a>
                   )}
                 </div>
 
                 {/* Image Side */}
                 <div
-                  className="relative h-64 lg:h-auto overflow-hidden"
-                  style={{ direction: "ltr" }}
+                  className="relative overflow-hidden"
+                  style={{ direction: "ltr", minHeight: "320px" }}
                 >
-                  <div className="absolute inset-0 bg-gradient-to-br from-accent/20 via-accent-cyan/10 to-accent-pink/10" />
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.5 }}
-                    className="w-full h-full bg-surface-light flex items-center justify-center"
-                  >
-                    <div className="text-center p-8">
-                      <div className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-accent to-accent-cyan flex items-center justify-center">
-                        <ExternalLink size={32} className="text-white" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-accent/20 via-accent-cyan/10 to-accent-pink/10 z-10 pointer-events-none" />
+                  {project.image ? (
+                    <motion.div
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.5 }}
+                      className="absolute inset-0"
+                    >
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        unoptimized
+                        className="object-cover object-top"
+                        sizes="(max-width: 1024px) 100vw, 50vw"
+                      />
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.5 }}
+                      className="absolute inset-0 bg-surface-light flex items-center justify-center"
+                    >
+                      <div className="text-center p-8">
+                        <div className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-accent to-accent-cyan flex items-center justify-center">
+                          <ExternalLink size={32} className="text-white" />
+                        </div>
+                        <p className="text-muted text-sm">Project Preview</p>
                       </div>
-                      <p className="text-muted text-sm">Project Preview</p>
-                    </div>
-                  </motion.div>
+                    </motion.div>
+                  )}
                 </div>
               </div>
             </motion.div>

@@ -133,7 +133,6 @@ export default function ProjectList({ initialProjects }: ProjectListProps) {
                 <div className="flex gap-2">
                   <Button
                     variant="ghost"
-                    size="sm"
                     className="p-2 h-auto"
                     onClick={() => openModal("project-form", { project })}
                   >
@@ -141,7 +140,6 @@ export default function ProjectList({ initialProjects }: ProjectListProps) {
                   </Button>
                   <Button
                     variant="ghost"
-                    size="sm"
                     className="p-2 h-auto text-error/60 hover:text-error"
                     onClick={() => handleDelete(project.id, project.title)}
                   >

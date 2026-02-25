@@ -33,6 +33,12 @@ export interface Dictionary {
     performance: string;
     seo: string;
     uptime: string;
+    visit: string;
+    items: Array<{
+      title: string;
+      description: string;
+      implementations: string[];
+    }>;
   };
   capabilities: {
     title: string;

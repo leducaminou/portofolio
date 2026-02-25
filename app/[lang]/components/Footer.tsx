@@ -24,13 +24,14 @@ export default function Footer({ dict }: FooterProps) {
             whileHover={{ scale: 1.05 }}
             className="text-lg font-bold gradient-text"
           >
-            {"<JD />"}
+            {"<AM />"}
           </motion.div>
 
           {/* Copyright */}
           <div className="text-center">
             <p className="text-sm text-muted">
-              © {new Date().getFullYear()} John Doe. {dict.footer.rights}
+              © {new Date().getFullYear()} Aminou Mohamadou.{" "}
+              {dict.footer.rights}
             </p>
             <p className="text-xs text-muted/60 mt-1">
               {dict.footer.built_with}

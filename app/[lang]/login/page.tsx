@@ -150,8 +150,8 @@ export default function LoginPage() {
           transition={{ delay: 0.4 }}
           className="text-center mt-8 text-sm text-muted"
         >
-          &copy; {new Date().getFullYear()} John Doe Portfolio. Restricted
-          Access.
+          &copy; {new Date().getFullYear()} Aminou Mohamadou Portfolio.
+          Restricted Access.
         </motion.div>
       </motion.div>
     </main>

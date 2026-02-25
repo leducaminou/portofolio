@@ -56,7 +56,7 @@ export default function Navbar({ dict, lang }: NavbarProps) {
               className="text-lg font-bold gradient-text cursor-pointer"
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             >
-              {"<JD />"}
+              {"<AM />"}
             </motion.div>
 
             {/* Desktop Nav */}
