@@ -2,3 +2,9 @@ Agis comme un developpeur front-end senior next-js, tailwind css.
 en version mobil le navbar depasse l'ecran, on est donc obligé de scroller horizontalement pour le voir en entier
 pour voir tout le contenu du navbar il faut scroller horizontalement.
 
+
+
+
+
+je veux que tu ajoute un bouton contacter sur whatsapp en bas a droite de l'ecran, il doit etre fixe et visible en permanence, il doit etre de couleur verte et doit avoir une icone whatsapp.
+le numero de telephone whatsapp est le +237654797781
