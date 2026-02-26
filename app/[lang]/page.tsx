@@ -17,7 +17,7 @@ export default async function HomePage({
   const dict = await getDictionary(lang);
 
   return (
-    <main className="relative">
+    <main className="relative overflow-hidden min-h-screen">
       <Navbar dict={dict} lang={lang} />
       <Hero dict={dict} />
       <Services dict={dict} />

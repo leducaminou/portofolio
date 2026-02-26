@@ -1,11 +1,12 @@
 "use server";
 
 import { z } from "zod/v4";
+import { Resend } from "resend";
 
 const contactSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.email("Please enter a valid email address"),
-  message: z.string().min(10, "Message must be at least 10 characters"),
+  name: z.string().min(2, "Le nom doit comporter au moins 2 caractères"),
+  email: z.email("Veuillez entrer une adresse email valide"),
+  message: z.string().min(10, "Le message doit comporter au moins 10 caractères"),
 });
 
 export type ContactFormState = {
@@ -13,6 +14,8 @@ export type ContactFormState = {
   message: string;
   errors?: Record<string, string[]>;
 };
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function submitContactForm(
   _prevState: ContactFormState,
@@ -35,19 +38,37 @@ export async function submitContactForm(
     }
     return {
       success: false,
-      message: "Please fix the errors below.",
+      message: "Veuillez corriger les erreurs ci-dessous.",
       errors: fieldErrors,
     };
   }
 
-  // Simulate saving to database
-  await new Promise((resolve) => setTimeout(resolve, 1500));
+  try {
+    const { data, error } = await resend.emails.send({
+      from: "Woptimozsoft Contact <contact@woptimozsoft.com>",
+      to: ["leducaminou2@gmail.com", "contact@woptimozsoft.com"],
+      subject: `Nouveau message de contact de ${result.data.name}`,
+      text: `Nom: ${result.data.name}\nEmail: ${result.data.email}\nMessage:\n${result.data.message}\n`,
+      replyTo: result.data.email,
+    });
 
-  // In production, you'd save to DB or send email here:
-  // await prisma.message.create({ data: result.data });
+    if (error) {
+      console.error("Erreur Resend:", error);
+      return {
+        success: false,
+        message: "Une erreur s'est produite lors de l'envoi de l'email. Veuillez réessayer plus tard.",
+      };
+    }
 
-  return {
-    success: true,
-    message: "Message sent successfully!",
-  };
+    return {
+      success: true,
+      message: "Merci ! Votre message a été envoyé avec succès.",
+    };
+  } catch (error) {
+    console.error("Erreur inattendue:", error);
+    return {
+      success: false,
+      message: "Une erreur inattendue s'est produite. Veuillez réessayer.",
+    };
+  }
 }
