@@ -7,6 +7,7 @@ import Projects from "./components/Projects";
 import Capabilities from "./components/Capabilities";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import WhatsAppButton from "./components/WhatsAppButton";
 
 export default async function HomePage({
   params,
@@ -26,6 +27,7 @@ export default async function HomePage({
       <Capabilities dict={dict} />
       <Contact dict={dict} />
       <Footer dict={dict} />
+      <WhatsAppButton />
     </main>
   );
 }

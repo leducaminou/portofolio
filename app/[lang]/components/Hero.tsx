@@ -34,7 +34,7 @@ export default function Hero({ dict }: HeroProps) {
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm text-muted mb-8"
         >
           <span className="w-2 h-2 rounded-full bg-success animate-pulse" />
-          Available for work
+          {dict.hero.available}
         </motion.div>
 
         {/* Name */}
@@ -137,8 +137,7 @@ export default function Hero({ dict }: HeroProps) {
             ))}
           </div>
           <p className="text-sm text-muted">
-            <span className="text-accent-light font-semibold">50+</span> happy
-            clients
+            <span className="text-accent-light font-semibold">50+</span> {dict.hero.clients}
           </p>
         </motion.div>
 

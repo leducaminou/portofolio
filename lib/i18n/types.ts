@@ -14,6 +14,8 @@ export interface Dictionary {
     cta_work: string;
     cta_contact: string;
     tags: string[];
+    available: string;
+    clients: string;
   };
   services: {
     title: string;

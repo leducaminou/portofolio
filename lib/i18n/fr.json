@@ -13,7 +13,9 @@
     "description": "Création d'expériences numériques exceptionnelles avec les technologies web & mobile modernes.",
     "cta_work": "Voir mes projets",
     "cta_contact": "Me contacter",
-    "tags": ["React", "TypeScript", "Next.js", "Node.js", "Flutter"]
+    "tags": ["React", "TypeScript", "Next.js", "Node.js", "Flutter"],
+    "available": "Disponible pour travailler",
+    "clients": "clients satisfaits"
   },
   "services": {
     "title": "Services",
