@@ -3,23 +3,24 @@
     "services": "Services",
     "stack": "Stack",
     "projects": "Projects",
+    "team": "Team",
     "capabilities": "Capabilities",
     "contact": "Contact"
   },
   "hero": {
-    "greeting": "Hi, I'm",
-    "name": "Aminou Mohamadou",
-    "roles": ["Web Developer", "App Developer", "SaaS Builder", "UI/UX Designer"],
-    "description": "Crafting exceptional digital experiences with modern web & mobile technologies.",
-    "cta_work": "View My Work",
+    "company": "Woptimoz Soft",
+    "greeting": "We are",
+    "roles": ["Web Developers", "App Developers", "SaaS Builders", "UI/UX Designers"],
+    "description": "A team of developers and designers building reliable web & mobile products, from the first prototype to production deployment.",
+    "cta_work": "See our work",
     "cta_contact": "Get in touch",
-    "tags": ["React", "TypeScript", "Next.js", "Node.js", "Flutter"],
-    "available": "Available for work",
-    "clients": "happy clients"
+    "tags": ["Next.js", "TypeScript", "Python", "FastAPI", "CI/CD"],
+    "available": "Available for new projects",
+    "team_label": "Meet the team"
   },
   "services": {
     "title": "Services",
-    "subtitle": "What I offer to help your business grow",
+    "subtitle": "What our team offers to help your business grow",
     "items": [
       {
         "title": "Web Applications",
@@ -40,66 +41,48 @@
     ]
   },
   "stack": {
-    "title": "Technical Expertise",
-    "subtitle": "Technologies I work with daily",
+    "title": "Our Technical Stack",
+    "subtitle": "The technologies and practices our team uses every day",
     "categories": {
       "all": "All",
       "frontend": "Frontend Development",
       "backend": "Backend & APIs",
-      "devops": "Performance & DevOps",
-      "mobile": "Mobile"
+      "devops": "Git, CI/CD & Deployment",
+      "mobile": "Mobile",
+      "design": "Design & Quality"
     }
   },
   "projects": {
     "title": "Featured Projects",
-    "subtitle": "Selected work showcasing my expertise",
+    "subtitle": "Selected work delivered by our team",
     "metrics_label": "Performance Metrics",
     "implementations_label": "Technical Implementation",
     "performance": "Performance",
     "seo": "SEO",
     "uptime": "Uptime",
     "visit": "Visit Project",
-    "items": [
-      {
-        "title": "Belair Santé — Health Insurance Management",
-        "description": "A comprehensive multi-role health insurance management platform enabling end-to-end management of insured members, healthcare providers, coverage approvals, medical billing, and reimbursements with high security and scalability.",
-        "implementations": [
-          "Multi-role architecture (Administrator, Claims Manager, Healthcare Provider, Insured Member)",
-          "Coverage request generation and validation with approval workflow",
-          "Full medical invoice management (submission, review, validation, rejection)",
-          "Reimbursement processing with detailed status tracking and history",
-          "Real-time analytical dashboards and reporting",
-          "Financial and operational report export (PDF/Excel)"
-        ]
-      },
-      {
-        "title": "Juatradx — Investment Platform",
-        "description": "A modern web-based investment platform designed to manage user portfolios, transactions, and financial growth with real-time analytics, secure authentication, and scalable infrastructure.",
-        "implementations": [
-          "Secure multi-role architecture (Administrator, Investor, Financial Manager)",
-          "User onboarding with KYC verification workflow",
-          "Investment plan management with dynamic return calculation",
-          "Portfolio tracking with real-time profit/loss analytics",
-          "Transaction management (deposits, withdrawals, transfers)",
-          "Automated earnings distribution system"
-        ]
-      },
-      {
-        "title": "AI Analytics Dashboard",
-        "description": "Machine learning powered analytics platform with predictive insights and automated reporting for data-driven decision making.",
-        "implementations": [
-          "Real-time data visualization with D3.js",
-          "ML model integration for predictions",
-          "Automated PDF report generation",
-          "Role-based access control",
-          "Custom query builder UI"
-        ]
-      }
-    ]
+    "source": "Source code",
+    "all": "All",
+    "empty": "Projects are coming soon.",
+    "client": "Client",
+    "show_more": "Show more",
+    "show_less": "Show less",
+    "close": "Close",
+    "categories": {
+      "web": "Web",
+      "mobile": "Mobile",
+      "saas": "SaaS",
+      "dashboard": "Dashboard",
+      "other": "Other"
+    }
+  },
+  "team": {
+    "title": "Meet the Team",
+    "subtitle": "The people behind Woptimoz Soft"
   },
   "capabilities": {
     "title": "Modern Web Capabilities",
-    "subtitle": "Cutting-edge technologies and patterns I specialize in"
+    "subtitle": "Cutting-edge technologies and patterns we specialize in"
   },
   "contact": {
     "title": "Let's Build Something Amazing",
@@ -110,7 +93,7 @@
     "email_label": "Email",
     "email_placeholder": "your@email.com",
     "message_label": "Message",
-    "message_placeholder": "Tell me about your project...",
+    "message_placeholder": "Tell us about your project...",
     "send": "Send Message",
     "sending": "Sending...",
     "success": "Message sent successfully!",

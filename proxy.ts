@@ -2,9 +2,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { jwtVerify } from "jose";
 
-const JWT_SECRET = new TextEncoder().encode(
-  process.env.JWT_SECRET || "default-secret-key-change-it"
-);
+import { getJwtSecret } from "@/lib/jwt-secret";
 
 const LOCALES = ["en", "fr"];
 const DEFAULT_LOCALE = "en";
@@ -51,7 +49,7 @@ export async function proxy(request: NextRequest) {
       );
     }
     try {
-      await jwtVerify(token, JWT_SECRET);
+      await jwtVerify(token, getJwtSecret());
     } catch {
       return NextResponse.redirect(
         new URL(`/${currentLocale}/login`, request.url)

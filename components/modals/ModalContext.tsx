@@ -2,7 +2,11 @@
 
 import React, { createContext, useContext, useState, ReactNode } from "react";
 
-type ModalType = "project-form" | "confirm-delete" | null;
+type ModalType =
+  | "project-form"
+  | "team-form"
+  | "confirm-delete"
+  | null;
 
 interface ModalContextType {
   isOpen: boolean;
