@@ -2,14 +2,17 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight, Mail } from "lucide-react";
+import Image from "next/image";
 import TypeWriter from "@/components/ui/TypeWriter";
 import type { Dictionary } from "@/lib/i18n/types";
+import type { PublicTeamMember } from "@/lib/data/queries";
 
 interface HeroProps {
   dict: Dictionary;
+  team: PublicTeamMember[];
 }
 
-export default function Hero({ dict }: HeroProps) {
+export default function Hero({ dict, team }: HeroProps) {
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
@@ -44,7 +47,7 @@ export default function Hero({ dict }: HeroProps) {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-5xl sm:text-4xl md:text-4xl lg:text-5xl font-bold  mb-4 glow-text text-white"
         >
-          <span className="font-light">Aminou</span> Mohamadou
+          <span className="font-light">{dict.hero.greeting}</span> {dict.hero.company}
         </motion.h1>
 
         {/* Typing Role */}
@@ -114,32 +117,40 @@ export default function Hero({ dict }: HeroProps) {
           </motion.button>
         </motion.div>
 
-        {/* Avatar Row */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.3 }}
-          className="mt-12 flex items-center justify-center gap-3"
-        >
-          <div className="flex -space-x-3">
-            {[
-              "bg-gradient-to-br from-violet-500 to-purple-600",
-              "bg-gradient-to-br from-cyan-500 to-blue-600",
-              "bg-gradient-to-br from-pink-500 to-rose-600",
-              "bg-gradient-to-br from-amber-500 to-orange-600",
-            ].map((bg, i) => (
-              <div
-                key={i}
-                className={`w-9 h-9 rounded-full border-2 border-background ${bg} flex items-center justify-center text-xs font-bold text-white`}
-              >
-                {["JD", "AK", "SM", "LP"][i]}
-              </div>
-            ))}
-          </div>
-          <p className="text-sm text-muted">
-            <span className="text-accent-light font-semibold">50+</span> {dict.hero.clients}
-          </p>
-        </motion.div>
+        {/* Team avatars (only when members exist) */}
+        {team.length > 0 && (
+          <motion.button
+            type="button"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.3 }}
+            onClick={() => scrollTo("team")}
+            className="mt-12 mx-auto flex items-center justify-center gap-3"
+          >
+            <div className="flex -space-x-3">
+              {team.slice(0, 5).map((member) => (
+                <div
+                  key={member.id}
+                  title={member.name}
+                  className="relative w-9 h-9 rounded-full border-2 border-background bg-gradient-to-br from-accent to-accent-cyan flex items-center justify-center text-xs font-bold text-white overflow-hidden"
+                >
+                  {member.image ? (
+                    <Image
+                      src={member.image}
+                      alt={member.name}
+                      fill
+                      sizes="36px"
+                      className="object-cover"
+                    />
+                  ) : (
+                    member.name.slice(0, 2).toUpperCase()
+                  )}
+                </div>
+              ))}
+            </div>
+            <p className="text-sm text-muted">{dict.hero.team_label}</p>
+          </motion.button>
+        )}
 
         {/* Scroll Indicator */}
         <motion.div

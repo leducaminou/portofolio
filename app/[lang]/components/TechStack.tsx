@@ -17,6 +17,7 @@ const categoryKeys: StackCategory[] = [
   "backend",
   "devops",
   "mobile",
+  "design",
 ];
 
 export default function TechStack({ dict }: TechStackProps) {

@@ -19,24 +19,23 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { lang } = await params;
   const isEn = lang === "en";
+  const title = isEn
+    ? "Woptimoz Soft — Web & App Development Team"
+    : "Woptimoz Soft — Équipe de développement Web & App";
   return {
-    title: isEn
-      ? "Aminou Mohamadou — Web & App Developer"
-      : "Aminou Mohamadou — Développeur Web & App",
+    title,
     description: isEn
-      ? "Premium freelance portfolio — Building modern web & mobile experiences for startups and SaaS."
-      : "Portfolio freelance premium — Création d'expériences web & mobile modernes pour startups et SaaS.",
+      ? "Woptimoz Soft is a team of developers and designers building modern web & mobile products for startups and businesses."
+      : "Woptimoz Soft est une équipe de développeurs et designers qui conçoit des produits web & mobile modernes pour startups et entreprises.",
     keywords: isEn
-      ? ["web developer", "next.js", "react", "freelance", "portfolio"]
-      : ["développeur web", "next.js", "react", "freelance", "portfolio"],
+      ? ["Woptimoz Soft", "software agency", "web development", "next.js", "fastapi", "mobile apps"]
+      : ["Woptimoz Soft", "agence de développement", "développement web", "next.js", "fastapi", "applications mobiles"],
     alternates: {
       canonical: `/${lang}`,
       languages: { en: "/en", fr: "/fr" },
     },
     openGraph: {
-      title: isEn
-        ? "Aminou Mohamadou — Web & App Developer"
-        : "Aminou Mohamadou — Développeur Web & App",
+      title,
       type: "website",
       locale: lang,
     },

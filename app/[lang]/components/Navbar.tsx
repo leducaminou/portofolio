@@ -8,17 +8,19 @@ import type { Dictionary } from "@/lib/i18n/types";
 interface NavbarProps {
   dict: Dictionary;
   lang: string;
+  hasTeam?: boolean;
 }
 
 const navItems = [
   "services",
   "stack",
   "projects",
+  "team",
   "capabilities",
   "contact",
 ] as const;
 
-export default function Navbar({ dict, lang }: NavbarProps) {
+export default function Navbar({ dict, lang, hasTeam = true }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
@@ -35,6 +37,7 @@ export default function Navbar({ dict, lang }: NavbarProps) {
   };
 
   const otherLang = lang === "en" ? "fr" : "en";
+  const visibleItems = navItems.filter((item) => hasTeam || item !== "team");
 
   return (
     <>
@@ -56,12 +59,12 @@ export default function Navbar({ dict, lang }: NavbarProps) {
               className="text-lg font-bold gradient-text cursor-pointer"
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             >
-              {"<AM />"}
+              {"<WS />"}
             </motion.div>
 
             {/* Desktop Nav */}
             <div className="hidden md:flex items-center gap-1">
-              {navItems.map((item) => (
+              {visibleItems.map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollTo(item)}
@@ -130,7 +133,7 @@ export default function Navbar({ dict, lang }: NavbarProps) {
             className="fixed inset-0 z-40 glass pt-20 px-6 md:hidden"
           >
             <div className="flex flex-col gap-4">
-              {navItems.map((item, i) => (
+              {visibleItems.map((item, i) => (
                 <motion.button
                   key={item}
                   initial={{ opacity: 0, x: 50 }}

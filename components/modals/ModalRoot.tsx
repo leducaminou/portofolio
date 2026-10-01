@@ -3,6 +3,7 @@
 import { useModal } from "@/components/modals/ModalContext";
 import Modal from "@/components/ui/Modal";
 import ProjectForm from "@/components/admin/projects/ProjectForm";
+import TeamMemberForm from "@/components/admin/team/TeamMemberForm";
 import Button from "@/components/ui/Button";
 
 export default function ModalRoot() {
@@ -14,6 +15,14 @@ export default function ModalRoot() {
     return (
       <Modal title={data?.project ? "Edit Project" : "New Project"}>
         <ProjectForm />
+      </Modal>
+    );
+  }
+
+  if (type === "team-form") {
+    return (
+      <Modal title={data?.member ? "Edit Team Member" : "New Team Member"}>
+        <TeamMemberForm />
       </Modal>
     );
   }

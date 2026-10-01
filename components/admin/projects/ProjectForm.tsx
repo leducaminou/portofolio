@@ -3,78 +3,101 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  LayoutDashboard,
-  Globe,
-  Github,
-  Info,
-  Camera,
-  Loader2,
-} from "lucide-react";
 import { projectSchema, ProjectInput } from "@/lib/validations";
 import { createProject, updateProject } from "@/lib/actions/projects";
+import { PROJECT_CATEGORIES, slugify } from "@/lib/config/site";
 import { useModal } from "@/components/modals/ModalContext";
 import Input from "@/components/ui/Input";
 import Textarea from "@/components/ui/Textarea";
+import Select from "@/components/ui/Select";
 import Button from "@/components/ui/Button";
-import { UploadDropzone } from "@/lib/uploadthing";
-import Image from "next/image";
+import TagInput from "@/components/ui/TagInput";
+import LinesField from "@/components/ui/LinesField";
+import ImageUploader from "@/components/ui/ImageUploader";
+
+const CATEGORY_LABELS: Record<string, string> = {
+  web: "Web application",
+  mobile: "Mobile app",
+  saas: "SaaS platform",
+  dashboard: "Dashboard",
+  other: "Other",
+};
+
+const numberOrNull = (v: unknown) =>
+  v === "" || v === null || v === undefined ? null : Number(v);
+const numberOrZero = (v: unknown) => (v === "" || v == null ? 0 : Number(v));
+
+const emptyProject: ProjectInput = {
+  title: "",
+  description: "",
+  implementations: [],
+  titleFr: "",
+  descriptionFr: "",
+  implementationsFr: [],
+  slug: "",
+  image: null,
+  liveUrl: "",
+  githubUrl: "",
+  category: "web",
+  clientName: "",
+  year: new Date().getFullYear(),
+  tags: [],
+  published: false,
+  featured: false,
+  sortOrder: 0,
+  performanceScore: 0,
+  seoScore: 0,
+  uptimeScore: 0,
+};
 
 export default function ProjectForm() {
   const { data, closeModal } = useModal();
-  const project = data?.project;
+  const project = data?.project as (ProjectInput & { id: string }) | undefined;
   const isEditing = !!project;
 
-  const [imageUrl, setImageUrl] = useState<string | null>(
-    project?.image || null,
-  );
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [slugTouched, setSlugTouched] = useState(isEditing);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const {
     register,
     handleSubmit,
-    formState: { errors },
-    reset,
+    watch,
     setValue,
+    formState: { errors },
   } = useForm<ProjectInput>({
     resolver: zodResolver(projectSchema),
     defaultValues: project
       ? {
+          ...emptyProject,
           ...project,
-          liveUrl: project.liveUrl || "",
-          githubUrl: project.githubUrl || "",
+          liveUrl: project.liveUrl ?? "",
+          githubUrl: project.githubUrl ?? "",
+          clientName: project.clientName ?? "",
         }
-      : {
-          title: "",
-          slug: "",
-          description: "",
-          liveUrl: "",
-          githubUrl: "",
-          published: false,
-          performanceScore: 0,
-          seoScore: 0,
-          uptimeScore: 0,
-          implementations: [],
-        },
+      : emptyProject,
   });
+
+  const image = watch("image") ?? null;
+  const tags = watch("tags");
+
+  const titleField = register("title");
 
   const onSubmit = async (formData: ProjectInput) => {
     setIsSubmitting(true);
-    const finalData = { ...formData, image: imageUrl };
-
+    setSubmitError(null);
     try {
       const result = isEditing
-        ? await updateProject(project.id, finalData)
-        : await createProject(finalData);
+        ? await updateProject(project.id, formData)
+        : await createProject(formData);
 
       if (result.success) {
         closeModal();
-        reset();
       } else {
-        alert(result.error);
+        setSubmitError(result.error);
       }
-    } catch (error) {
-      alert("Something went wrong");
+    } catch {
+      setSubmitError("Something went wrong. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -82,136 +105,195 @@ export default function ProjectForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
-      {/* Image Upload */}
-      <div className="space-y-2">
-        <label className="text-sm font-medium text-foreground/80 ml-1">
-          Project Image
-        </label>
-        {imageUrl ? (
-          <div className="relative aspect-video w-full rounded-2xl overflow-hidden border border-border group">
-            <Image
-              src={imageUrl}
-              alt="Preview"
-              fill
-              className="object-cover transition-transform group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-              <Button
-                type="button"
-                variant="outline"
-                onClick={() => setImageUrl(null)}
-                className="bg-background/20 backdrop-blur-md border-white/20 text-white"
-              >
-                Change Image
-              </Button>
-            </div>
-          </div>
-        ) : (
-          <UploadDropzone
-            endpoint="imageUploader"
-            onClientUploadComplete={(res) => {
-              if (res?.[0]) {
-                setImageUrl(res[0].ufsUrl);
-              }
-            }}
-            onUploadError={(error: Error) => {
-              alert(`ERROR! ${error.message}`);
-            }}
-            className="ut-label:text-accent-light ut-button:bg-accent ut-button:ut-readying:bg-accent/50 borded-dashed border-2 border-border rounded-2xl bg-surface/50 p-8 transition-colors hover:border-accent/40"
-          />
-        )}
-      </div>
+      {submitError && (
+        <div
+          role="alert"
+          className="p-3 bg-error/10 border border-error/20 rounded-xl text-error text-sm"
+        >
+          {submitError}
+        </div>
+      )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <Input
-          label="Title"
-          placeholder="My Amazing Project"
-          {...register("title")}
-          error={errors.title?.message}
-        />
-        <Input
-          label="Slug"
-          placeholder="my-amazing-project"
-          {...register("slug")}
-          error={errors.slug?.message}
-        />
-      </div>
-
-      <Textarea
-        label="Description"
-        placeholder="Brief description of the project..."
-        {...register("description")}
-        error={errors.description?.message}
+      <ImageUploader
+        label="Project image"
+        value={image}
+        onChange={(url) => setValue("image", url, { shouldDirty: true })}
+        onError={setSubmitError}
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <Input
-          label="Live Preview URL"
-          placeholder="https://..."
-          {...register("liveUrl")}
-          error={errors.liveUrl?.message}
-        />
-        <Input
-          label="Github Repository"
-          placeholder="https://github.com/..."
-          {...register("githubUrl")}
-          error={errors.githubUrl?.message}
-        />
-      </div>
+      {/* ═══ Main info (English, default language) ═══ */}
+      <section className="space-y-6">
+        <h4 className="text-sm font-semibold text-white">
+          Main information (English)
+        </h4>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <Input
+            label="Title"
+            placeholder="Belair Santé"
+            {...titleField}
+            onChange={(e) => {
+              titleField.onChange(e);
+              if (!slugTouched) {
+                setValue("slug", slugify(e.target.value), {
+                  shouldValidate: true,
+                });
+              }
+            }}
+            error={errors.title?.message}
+          />
+          <Input
+            label="Slug (unique)"
+            placeholder="belair-sante"
+            {...register("slug", { onChange: () => setSlugTouched(true) })}
+            error={errors.slug?.message}
+          />
+        </div>
 
-      <div className="grid grid-cols-3 gap-6">
-        <Input
-          label="Performance"
-          type="number"
-          {...register("performanceScore", { valueAsNumber: true })}
-          error={errors.performanceScore?.message}
+        <Textarea
+          label="Description"
+          placeholder="What the project does, for whom, and the result..."
+          {...register("description")}
+          error={errors.description?.message}
         />
-        <Input
-          label="SEO"
-          type="number"
-          {...register("seoScore", { valueAsNumber: true })}
-          error={errors.seoScore?.message}
-        />
-        <Input
-          label="Uptime"
-          type="number"
-          step="0.1"
-          {...register("uptimeScore", { valueAsNumber: true })}
-          error={errors.uptimeScore?.message}
-        />
-      </div>
 
-      <div className="space-y-2">
-        <label className="text-sm font-medium text-muted">
-          Implementations / Tech Stack (comma separated)
-        </label>
-        <Input
-          placeholder="Next.js, Tailwind, Prisma..."
-          defaultValue={project?.implementations?.join(", ")}
-          onChange={(e) => {
-            const tags = e.target.value
-              .split(",")
-              .map((t) => t.trim())
-              .filter(Boolean);
-            setValue("implementations" as any, tags);
-          }}
+        <LinesField
+          label="Key features / technical implementation"
+          placeholder={"One feature per line\nMulti-role architecture\nPDF export"}
+          value={project?.implementations ?? []}
+          onChange={(lines) => setValue("implementations", lines)}
+          hint="One item per line."
         />
-      </div>
+      </section>
 
-      <div className="flex items-center gap-2 p-1">
-        <input
-          type="checkbox"
-          id="published"
-          className="w-4 h-4 rounded border-gray-300 text-accent focus:ring-accent"
-          {...register("published")}
+      {/* ═══ French translation ═══ */}
+      <section className="space-y-6">
+        <h4 className="text-sm font-semibold text-white">
+          Traduction française{" "}
+          <span className="text-muted font-normal">
+            (optional, title and description are both required to be saved)
+          </span>
+        </h4>
+        <Input
+          label="Titre"
+          {...register("titleFr")}
+          error={errors.titleFr?.message}
         />
-        <label
-          htmlFor="published"
-          className="text-sm font-medium text-foreground/80 cursor-pointer"
-        >
-          Publish this project
-        </label>
-      </div>
+        <Textarea
+          label="Description"
+          {...register("descriptionFr")}
+          error={errors.descriptionFr?.message}
+        />
+        <LinesField
+          label="Fonctionnalités clés"
+          value={project?.implementationsFr ?? []}
+          onChange={(lines) => setValue("implementationsFr", lines)}
+          hint="Un élément par ligne."
+        />
+      </section>
+
+      {/* ═══ Details ═══ */}
+      <section className="space-y-6">
+        <h4 className="text-sm font-semibold text-white">Details</h4>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <Select
+            label="Category"
+            options={PROJECT_CATEGORIES.map((c) => ({
+              value: c,
+              label: CATEGORY_LABELS[c],
+            }))}
+            {...register("category")}
+            error={errors.category?.message}
+          />
+          <Input
+            label="Client (optional)"
+            {...register("clientName")}
+            error={errors.clientName?.message}
+          />
+          <Input
+            label="Year"
+            type="number"
+            {...register("year", { setValueAs: numberOrNull })}
+            error={errors.year?.message}
+          />
+        </div>
+
+        <TagInput
+          label="Technologies"
+          placeholder="Next.js, FastAPI, PostgreSQL..."
+          value={tags}
+          onChange={(next) => setValue("tags", next, { shouldDirty: true })}
+        />
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <Input
+            label="Live URL"
+            placeholder="https://..."
+            {...register("liveUrl")}
+            error={errors.liveUrl?.message}
+          />
+          <Input
+            label="GitHub repository"
+            placeholder="https://github.com/..."
+            {...register("githubUrl")}
+            error={errors.githubUrl?.message}
+          />
+        </div>
+
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+          <Input
+            label="Performance (0-100)"
+            type="number"
+            {...register("performanceScore", { setValueAs: numberOrZero })}
+            error={errors.performanceScore?.message}
+          />
+          <Input
+            label="SEO (0-100)"
+            type="number"
+            {...register("seoScore", { setValueAs: numberOrZero })}
+            error={errors.seoScore?.message}
+          />
+          <Input
+            label="Uptime % (0-100)"
+            type="number"
+            step="0.1"
+            {...register("uptimeScore", { setValueAs: numberOrZero })}
+            error={errors.uptimeScore?.message}
+          />
+        </div>
+        <p className="text-xs text-muted/70">
+          Metrics left at 0 are hidden on the public site. Only enter values
+          you have measured.
+        </p>
+      </section>
+
+      {/* ═══ Publication ═══ */}
+      <section className="space-y-4">
+        <h4 className="text-sm font-semibold text-white">Publication</h4>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-end">
+          <Input
+            label="Display order (lower first)"
+            type="number"
+            {...register("sortOrder", { valueAsNumber: true })}
+            error={errors.sortOrder?.message}
+          />
+          <label className="flex items-center gap-2 text-sm text-foreground/80 cursor-pointer pb-2.5">
+            <input
+              type="checkbox"
+              className="w-4 h-4 accent-[var(--color-accent)]"
+              {...register("published")}
+            />
+            Published
+          </label>
+          <label className="flex items-center gap-2 text-sm text-foreground/80 cursor-pointer pb-2.5">
+            <input
+              type="checkbox"
+              className="w-4 h-4 accent-[var(--color-accent)]"
+              {...register("featured")}
+            />
+            Featured (shown first)
+          </label>
+        </div>
+      </section>
 
       <div className="flex gap-3 justify-end pt-4">
         <Button type="button" variant="ghost" onClick={closeModal}>
@@ -222,7 +304,7 @@ export default function ProjectForm() {
           isLoading={isSubmitting}
           className="min-w-[120px]"
         >
-          {isEditing ? "Save Changes" : "Create Project"}
+          {isEditing ? "Save changes" : "Create project"}
         </Button>
       </div>
     </form>

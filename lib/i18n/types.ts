@@ -3,19 +3,20 @@ export interface Dictionary {
     services: string;
     stack: string;
     projects: string;
+    team: string;
     capabilities: string;
     contact: string;
   };
   hero: {
+    company: string;
     greeting: string;
-    name: string;
     roles: string[];
     description: string;
     cta_work: string;
     cta_contact: string;
     tags: string[];
     available: string;
-    clients: string;
+    team_label: string;
   };
   services: {
     title: string;
@@ -36,11 +37,18 @@ export interface Dictionary {
     seo: string;
     uptime: string;
     visit: string;
-    items: Array<{
-      title: string;
-      description: string;
-      implementations: string[];
-    }>;
+    source: string;
+    all: string;
+    empty: string;
+    client: string;
+    show_more: string;
+    show_less: string;
+    close: string;
+    categories: Record<string, string>;
+  };
+  team: {
+    title: string;
+    subtitle: string;
   };
   capabilities: {
     title: string;

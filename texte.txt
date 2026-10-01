@@ -1,10 +1,26 @@
-Agis comme un developpeur front-end senior next-js, tailwind css.
-en version mobil le navbar depasse l'ecran, on est donc obligé de scroller horizontalement pour le voir en entier
-pour voir tout le contenu du navbar il faut scroller horizontalement.
+
+Comme membre d'equipe ajoute dans la bd. pour le moment mais une image par defaut, qu'on modifiera en bd.
+seed ces membres en bd
+Aminou Mohamadou Senior software developper
+Remy Nguela Software Developper
+Adrien Mandak Software Developper.
+
+les images des 3 sont dans le dossier C:\Users\Duc Aminou\Downloads\team
+
+on doit avoir cette section avec espace pour les photos format 1/1.
+
+et on doit pouvoir ajouter les équipes dans la base de donné et depuis dashboard admin. upload des images c'est via uploathings 
 
 
+crée les user 
+email: "leducaminou2@gmail.com",
+  email: "adrienmandak@gmail.com",
+  email: "remyjunior386@gmail.com",
+  password: "Ordinateurs95",
+
+tu as acces a env
 
 
-
-je veux que tu ajoute un bouton contacter sur whatsapp en bas a droite de l'ecran, il doit etre fixe et visible en permanence, il doit etre de couleur verte et doit avoir une icone whatsapp.
-le numero de telephone whatsapp est le +237654797781
+tu était entrain d'executer pour ce portfolio est orienté une personne. mais je veux que ce soit un portfolio équique. il faut que ce soit le porfolio d'une equipe de dev. oriencte ausi ça entrepreprse qui s'appel woptimoz soft.
+et coté admin, je veux un systeme complet qui permet d'ajouter les projet. 
+  lorsque le systeme à crashé. continue

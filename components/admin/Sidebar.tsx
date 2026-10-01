@@ -8,6 +8,7 @@ import {
   LayoutDashboard,
   FolderKanban,
   Cpu,
+  Users,
   Menu,
   X,
   ArrowLeft,
@@ -21,6 +22,7 @@ interface SidebarProps {
 const navItems = [
   { icon: LayoutDashboard, label: "Dashboard", href: "" },
   { icon: FolderKanban, label: "Projects", href: "/projects" },
+  { icon: Users, label: "Team", href: "/team" },
   { icon: Cpu, label: "Tech Stack", href: "/stack" },
 ];
 
@@ -67,7 +69,7 @@ export default function Sidebar({ lang }: SidebarProps) {
         >
           {/* Logo */}
           <div className="h-16 flex items-center px-6 border-b border-border">
-            <span className="text-lg font-bold gradient-text">Admin Panel</span>
+            <span className="text-lg font-bold gradient-text">Woptimoz Admin</span>
           </div>
 
           {/* Nav Items */}
